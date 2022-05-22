@@ -1,8 +1,3 @@
-<!-- <?php 
-if(isset($_POST['sub'])){
-    $a = $_POST['one'];
-}
-?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +8,18 @@ if(isset($_POST['sub'])){
     <title>Document</title>
 </head>
 <body>
-    <?php $a = $_POST['one'] ;?>
-    <?php foreach($a as $item): ?>
-    <p><?php print $item ?></p>
+    <?php
+     $genre = $_POST['スポーツ'];
+     ?>
+    <?php foreach($genre as $user_answer):?>
+    <h1><?php 
+    if($user_answer == 'サッカー'):
+        print '正解';
+    else:
+       print '正解はサッカーです';
+    endif;
+    ?></h1>
+    <p>小学生から中学まではサッカー、高校からはフットサルをしていました。</p>
     <?php endforeach ?>
 </body>
 </html>
