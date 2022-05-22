@@ -5,7 +5,6 @@ $question = array();
 $first = array();
 $second= array();
 $third = array();
-$answer = array();
 $genre = array();
 
 $sql = 'SELECT * FROM `quiz`';
@@ -15,7 +14,6 @@ while($row=mysqli_fetch_array($rst)){
     array_push($first,$row['first']);
     array_push($second,$row['second']);
     array_push($third,$row['third']);
-    array_push($answer,$row['answer']);
     array_push($genre,$row['ganre']);
     echo $row['ganre'];
 }
@@ -27,6 +25,8 @@ while($row=mysqli_fetch_array($rst)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/sender.css" />
+    
 </head>
 <body>
     <?php

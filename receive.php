@@ -1,3 +1,15 @@
+<?php
+$URL = mysqli_connect('localhost','root','','quiz');
+mysqli_set_charset($URL,'UTF8');
+$sql = 'SELECT * FROM `quiz`';
+$rst = mysqli_query($URL,$sql);
+$answer = array();
+
+while($row=mysqli_fetch_array($rst)){
+array_push($answer,$row['answer']);
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +25,7 @@
      ?>
     <?php foreach($genre as $user_answer):?>
     <h1><?php 
-    if($user_answer == 'サッカー'):
+    if($user_answer == $answer[0]):
         print '正解';
     else:
        print '正解はサッカーです';
