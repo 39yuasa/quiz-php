@@ -1,15 +1,19 @@
 <?php
-$URL = mysqli_connect('localhost','root','','quiz');
+$URL = mysqli_connect('localhost','root','','quizz');
 mysqli_set_charset($URL,'UTF8');
-$sql = 'SELECT * FROM `quiz`';
+$sql = 'SELECT * FROM `quizzz`';
 $rst = mysqli_query($URL,$sql);
 $answer = array();
+$p = array();
 
 while($row=mysqli_fetch_array($rst)){
 array_push($answer,$row['answer']);
+array_push($p,$row['Sentence']);
 }
+$correct = 0;
+$genre =array( $_POST['スポーツ'] );
+$count = count($genre);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +24,27 @@ array_push($answer,$row['answer']);
     <title>Document</title>
 </head>
 <body>
-    <?php
-     $genre = $_POST['スポーツ'];
-     ?>
-    <?php foreach($genre as $user_answer):?>
+    <?php for($i=0; $i < $count; $i++): ?>
+    <?php foreach($genre[$i] as $user_answer):?>
     <h1><?php 
-    if($user_answer == $answer[0]):
+    if($user_answer == $answer[$i]):
         print '正解';
+        $correct++;
     else:
-       print '正解はサッカーです';
+       print '正解は' . $answer[$i] . 'です';
     endif;
     ?></h1>
-    <p>小学生から中学まではサッカー、高校からはフットサルをしていました。</p>
+    <p><?php print $p[$i] ;?></p>
     <?php endforeach ?>
+    <?php endfor ?>
+
+    <p>得点は<?php print $correct?>です</p>
 </body>
 </html>
+
+
+<!-- for文がない場合2回しか回っていない -> 4回、回っているのはfor文のせい -->
+<!-- いや違うかもしれない -->
+<!-- 配列数は2 -->
+<!-- count数的にはfor文があっている -->
+<!-- foreachのときcountの表記がおかしい -->

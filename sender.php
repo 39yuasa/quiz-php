@@ -1,5 +1,5 @@
 <?php
-$URL = mysqli_connect('localhost','root','','quiz');
+$URL = mysqli_connect('localhost','root','','quizz');
 mysqli_set_charset($URL,'UTF8');
 $question = array();
 $first = array();
@@ -7,15 +7,14 @@ $second= array();
 $third = array();
 $genre = array();
 
-$sql = 'SELECT * FROM `quiz`';
+$sql = 'SELECT * FROM `quizzz`';
 $rst = mysqli_query($URL,$sql);
 while($row=mysqli_fetch_array($rst)){
-    array_push($question,$row['quetion']);
+    array_push($question,$row['question']);
     array_push($first,$row['first']);
     array_push($second,$row['second']);
     array_push($third,$row['third']);
-    array_push($genre,$row['ganre']);
-    echo $row['ganre'];
+    array_push($genre,$row['zenre']);
 }
 ?>
 <!DOCTYPE html>
@@ -37,9 +36,10 @@ while($row=mysqli_fetch_array($rst)){
     <p><input type="checkbox" name = '<?php print $genre[$i]?>[]' value = <?php print $first[$i]?>><?php print $first[$i]?></p>
     <p><input type="checkbox" name = '<?php print $genre[$i]?>[]' value= <?php print $second[$i]?>><?php print $second[$i]?></p>
     <p><input type="checkbox" name = '<?php print $genre[$i]?>[]' value= <?php print $third[$i]?>><?php print $third[$i]?></p>
+    <?php endfor?>
     <p><input type="submit" name ='sub' value="送信"></p>
 </form>
-<?php endfor?>
+
 </body>
 </html>
 
