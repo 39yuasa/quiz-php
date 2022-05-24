@@ -5,14 +5,16 @@ $sql = 'SELECT * FROM `quizzz`';
 $rst = mysqli_query($URL,$sql);
 $answer = array();
 $p = array();
+// $genre = array();
 
 while($row=mysqli_fetch_array($rst)){
 array_push($answer,$row['answer']);
 array_push($p,$row['Sentence']);
+// array_push($genre,$row['zenre']);
 }
 $correct = 0;
-$genre =array( $_POST['スポーツ'] );
-$count = count($genre);
+$genres = array( $_POST['スポーツ'],$_POST['ラーメン']);
+$count = count($genres);
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,7 @@ $count = count($genre);
 </head>
 <body>
     <?php for($i=0; $i < $count; $i++): ?>
-    <?php foreach($genre[$i] as $user_answer):?>
+    <?php foreach($genres[$i] as $user_answer):?>
     <h1><?php 
     if($user_answer == $answer[$i]):
         print '正解';
